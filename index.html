@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Find Organic Farms and Farmer's Markets</title>
+    <title>SmartenUp: All Your Information in One Place</title>
     <link rel="stylesheet" href="main.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>National Park Finder</h1>
+    <header>
+        <h1>SmartenUp: All of Your Information In One Place</h1>
+    </header>
 
+    <div class="container">
         <form id="js-form">
-            <label for="state">US State Code (ex. CA)</label>
-            <input type="text" name="state" id="js-state" class ="state" required>
+            <label for="info">What Do You Want To Know About?</label>
+            <input type="text" name="info" id="js-info" class ="info" required>
 
             <label for="max-results">Maximum Results</label>
             <input type="number" name="max-results" id="js-max-results" value="10">
@@ -24,10 +26,17 @@
 
         <p id="js-error-message" class="error-message"></p>
         <section id="results" class="hidden">
-            <h2>Search results</h2>
-            <ul id="results-list">
-            </ul>
-          </section>
+            <h2>Search Results</h2>
+                <h3>New York Times Articles</h3>
+                    <ul id="nyt-results-list">
+                    </ul>
+                <h3>Tweets</h3>
+                    <ul id="twitter-results-list">
+                    </ul>
+                <h3>Podcasts</h3>    
+                    <ul id="listen-results-list">
+                    </ul>
+        </section>
     </div>
     <script src="index.js"></script>
 </body>
