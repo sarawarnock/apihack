@@ -60,33 +60,34 @@ function getPodcasts(query) {
     })
     .then(responseJson => displayResults(responseJson))
     .catch(error => {
-        $('#js-error-message').text(`Something went wrong: ${error.message}`);
+        console.log(error);
+        $('#js-error-message').text(`Something went wrong: ${error}`);
     });
 }
 
-// function getArticles(query) {
-//     const nytParams = {
-//         q: query,
-//         "api-key": NYT.KEY
-//     }
+function getArticles(query) {
+    const nytParams = {
+        q: query,
+        "api-key": NYT.KEY
+    }
 
-//     const nytQueryString = formatNytQueryParams(nytParams);
-//     const nytURL = NYT.BASE_URL + '?' + nytQueryString;
+    const nytQueryString = formatNytQueryParams(nytParams);
+    const nytURL = NYT.BASE_URL + '?' + nytQueryString;
 
-//     console.log(nytURL);
+    console.log(nytURL);
 
-//     fetch(nytURL)
-//     .then(response => {
-//         if (response.ok) {
-//             return response.json();
-//         }
-//         throw new Error (response.statusText);
-//     })
-//     .then(responseJson => displayResults(responseJson))
-//     .catch(error => {
-//         $('#js-error-message').text(`Something went wrong: ${error.message}`);
-//     });
-// }
+    fetch(nytURL)
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        }
+        throw new Error (response.statusText);
+    })
+    .then(responseJson => displayResults(responseJson))
+    .catch(error => {
+        $('#js-error-message').text(`Something went wrong: ${error.message}`);
+    });
+}
 
 // function getTweets(query, maxResults=20) {
 //     const twitterParams = {
@@ -120,14 +121,15 @@ function displayResults(responseJson) {
     $('#twitter-results-list').empty();
     $('#listen-results-list').empty();
 
-    // for (let i=0; i < responseJson.length; i++) {
-    //     $('#nyt-results-list').append(
-    //         `<li><<h4>${responseJson[i].headline}</h4>
-    //             <h5>${responseJson[i].byline}</h5>
-    //             <p>${responseJson[i].multimedia.url}</p>
-    //         </li>`
-    //     )
-    // }
+    for (let i=0; i < responseJson.docs.length; i++) {
+        $('#nyt-results-list').append(
+            `<li><<h4>${responseJson.response.docs[i].headline.main}</h4>
+                <h5>${responseJson.response.docs[i].byline}</h5>
+                <p>${responseJson.response.docs[i].abstract}</p>
+                <p>${responseJson.response.docs[i].web_url}</p>
+            </li>`
+        )
+    }
 
     // for (let i=0; i < responseJson.length; i++) {
     //     $('#twitter-results-list').append(
@@ -155,7 +157,7 @@ function watchForm() {
         const infoInput = $('#js-info').val();
         const maxResults = $('#js-max-results').val();
         getPodcasts(infoInput);
-        // getArticles(infoInput, maxResults);
+        getArticles(infoInput, maxResults);
         // getTweets(infoInput, maxResults);
     });
 }
