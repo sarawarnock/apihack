@@ -18,29 +18,34 @@ const TWITTER = {
     BASE_URL: 'https://api.twitter.com/1.1/search/tweets.json'
 };
 
-function formatListenQueryParams() {
+function formatListenQueryParams(listenParams) {
     const listenQueryItems = Object.keys(listenParams)
     .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(listenParams[key])}`)
     return listenQueryItems.join('&');
 }
 
-// function formatNytQueryParams() {
+// function formatNytQueryParams(nytParams) {
 //     const nytQueryItems = Object.keys(nytParams)
 //     .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(nytParams[key])}`)
 //     return nytQueryItems.join('&');
 // }
 
-// function formatTwitterQueryParams() {
+// function formatTwitterQueryParams(twitterParams) {
 //     const twitterQueryItems = Object.keys(twitterParams)
 //     .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(twitterParams[key])}`)
 //     return twitterQueryItems.join('&');
 // }
 
-function getPodcasts(query, maxResults=5) {
+function getPodcasts(query) {
     const listenParams = {
-        api_key: LISTEN.KEY,
-        q: query,
-        maxResults
+        //api_key: LISTEN.KEY,
+        q: query
+    };
+
+    const myHeaders = {
+        header: new Headers({
+            "X-ListenAPI-Key": 'e57ee78b69e946798d7031a2901389f5'
+        })
     };
 
     const listenQueryString = formatListenQueryParams(listenParams);
@@ -49,7 +54,7 @@ function getPodcasts(query, maxResults=5) {
 
     console.log(listenURL);
 
-    fetch(listenURL)
+    fetch(listenURL, myHeaders)
     .then(response => {
         if (response.ok) {
             return response.json();
@@ -153,7 +158,7 @@ function watchForm() {
         event.preventDefault();
         const infoInput = $('#js-info').val();
         const maxResults = $('#js-max-results').val();
-        getPodcasts(infoInput, maxResults);
+        getPodcasts(infoInput);
         // getArticles(infoInput, maxResults);
         // getTweets(infoInput, maxResults);
     });
