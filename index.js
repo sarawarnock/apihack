@@ -24,17 +24,17 @@ function formatListenQueryParams() {
     return listenQueryItems.join('&');
 }
 
-function formatNytQueryParams() {
-    const nytQueryItems = Object.keys(nytParams)
-    .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(nytParams[key])}`)
-    return nytQueryItems.join('&');
-}
+// function formatNytQueryParams() {
+//     const nytQueryItems = Object.keys(nytParams)
+//     .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(nytParams[key])}`)
+//     return nytQueryItems.join('&');
+// }
 
-function formatTwitterQueryParams() {
-    const twitterQueryItems = Object.keys(twitterParams)
-    .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(twitterParams[key])}`)
-    return twitterQueryItems.join('&');
-}
+// function formatTwitterQueryParams() {
+//     const twitterQueryItems = Object.keys(twitterParams)
+//     .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(twitterParams[key])}`)
+//     return twitterQueryItems.join('&');
+// }
 
 function getPodcasts(query, maxResults=5) {
     const listenParams = {
@@ -62,55 +62,55 @@ function getPodcasts(query, maxResults=5) {
     });
 }
 
-function getArticles(query, maxResults=10) {
-    const nytParams = {
-        api_key: NYT.KEY,
-        q: query,
-        maxResults
-    }
+// function getArticles(query, maxResults=10) {
+//     const nytParams = {
+//         api_key: NYT.KEY,
+//         q: query,
+//         maxResults
+//     }
 
-    const nytQueryString = formatNytQueryParams(nytParams);
-    const nytURL = NYT.BASE_URL + '?' + nytQueryString;
+//     const nytQueryString = formatNytQueryParams(nytParams);
+//     const nytURL = NYT.BASE_URL + '?' + nytQueryString;
 
-    console.log(nytURL);
+//     console.log(nytURL);
 
-    fetch(nytURL)
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        }
-        throw new Error (response.statusText);
-    })
-    .then(responseJson => displayResults(responseJson))
-    .catch(error => {
-        $('#js-error-message').text(`Something went wrong: ${error.message}`);
-    });
-}
+//     fetch(nytURL)
+//     .then(response => {
+//         if (response.ok) {
+//             return response.json();
+//         }
+//         throw new Error (response.statusText);
+//     })
+//     .then(responseJson => displayResults(responseJson))
+//     .catch(error => {
+//         $('#js-error-message').text(`Something went wrong: ${error.message}`);
+//     });
+// }
 
-function getTweets(query, maxResults=20) {
-    const twitterParams = {
-        api_key: TWITTER.KEY,
-        q: query,
-        count: maxResults
-    }
+// function getTweets(query, maxResults=20) {
+//     const twitterParams = {
+//         api_key: TWITTER.KEY,
+//         q: query,
+//         count: maxResults
+//     }
 
-    const twitterQueryString = formatTwitterQueryParams(twitterParams);
-    const twitterURL = TWITTER.BASE_URL + '?' + twitterQueryString;
+//     const twitterQueryString = formatTwitterQueryParams(twitterParams);
+//     const twitterURL = TWITTER.BASE_URL + '?' + twitterQueryString;
 
-    console.log(twitterURL);
+//     console.log(twitterURL);
 
-    fetch(twitterURL)
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        }
-        throw new Error (response.statusText);
-    })
-    .then(responseJson => displayResults(responseJson))
-    .catch(error => {
-        $('#js-error-message').text(`Something went wrong: ${error.message}`);
-    });
-}
+//     fetch(twitterURL)
+//     .then(response => {
+//         if (response.ok) {
+//             return response.json();
+//         }
+//         throw new Error (response.statusText);
+//     })
+//     .then(responseJson => displayResults(responseJson))
+//     .catch(error => {
+//         $('#js-error-message').text(`Something went wrong: ${error.message}`);
+//     });
+// }
 
 function displayResults(responseJson) {
     console.log(responseJson);
@@ -119,22 +119,22 @@ function displayResults(responseJson) {
     $('#twitter-results-list').empty();
     $('#listen-results-list').empty();
 
-    for (let i=0; i < responseJson.length; i++) {
-        $('#nyt-results-list').append(
-            `<li><<h4>${responseJson[i].headline}</h4>
-                <h5>${responseJson[i].byline}</h5>
-                <p>${responseJson[i].multimedia.url}</p>
-            </li>`
-        )
-    }
+    // for (let i=0; i < responseJson.length; i++) {
+    //     $('#nyt-results-list').append(
+    //         `<li><<h4>${responseJson[i].headline}</h4>
+    //             <h5>${responseJson[i].byline}</h5>
+    //             <p>${responseJson[i].multimedia.url}</p>
+    //         </li>`
+    //     )
+    // }
 
-    for (let i=0; i < responseJson.length; i++) {
-        $('#twitter-results-list').append(
-            `<li><h4>${responseJson[i]}</h4>
-                <h4>
-            </li>`
-        )
-    }
+    // for (let i=0; i < responseJson.length; i++) {
+    //     $('#twitter-results-list').append(
+    //         `<li><h4>${responseJson[i]}</h4>
+    //             <h4>
+    //         </li>`
+    //     )
+    // }
 
     for (let i=0; i < responseJson.length; i++) {
         $('#listen-results-list').append(
@@ -154,8 +154,8 @@ function watchForm() {
         const infoInput = $('#js-info').val();
         const maxResults = $('#js-max-results').val();
         getPodcasts(infoInput, maxResults);
-        getArticles(infoInput, maxResults);
-        getTweets(infoInput, maxResults);
+        // getArticles(infoInput, maxResults);
+        // getTweets(infoInput, maxResults);
     });
 }
 
