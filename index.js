@@ -58,7 +58,7 @@ function getPodcasts(query) {
         }
         throw new Error (response.statusText);
     })
-    .then(responseJson => displayResults(responseJson))
+    .then(responseJson => displayListenResults(responseJson))
     .catch(error => {
         console.log(error);
         $('#js-error-message').text(`Something went wrong: ${error}`);
@@ -83,7 +83,7 @@ function getArticles(query) {
         }
         throw new Error (response.statusText);
     })
-    .then(responseJson => displayResults(responseJson))
+    .then(responseJson => displayNytResults(responseJson))
     .catch(error => {
         $('#js-error-message').text(`Something went wrong: ${error.message}`);
     });
@@ -114,30 +114,9 @@ function getArticles(query) {
 //     });
 // }
 
-function displayResults(responseJson) {
+function displayListenResults(responseJson) {
     console.log(responseJson);
-
-    $('#nyt-results-list').empty();
-    $('#twitter-results-list').empty();
     $('#listen-results-list').empty();
-
-    for (let i=0; i < responseJson.docs.length; i++) {
-        $('#nyt-results-list').append(
-            `<li><<h4>${responseJson.response.docs[i].headline.main}</h4>
-                <h5>${responseJson.response.docs[i].byline}</h5>
-                <p>${responseJson.response.docs[i].abstract}</p>
-                <p>${responseJson.response.docs[i].web_url}</p>
-            </li>`
-        )
-    }
-
-    // for (let i=0; i < responseJson.length; i++) {
-    //     $('#twitter-results-list').append(
-    //         `<li><h4>${responseJson[i]}</h4>
-    //             <h4>
-    //         </li>`
-    //     )
-    // }
 
     for (let i=0; i < responseJson.results.length; i++) {
         $('#listen-results-list').append(
@@ -147,9 +126,38 @@ function displayResults(responseJson) {
             </li>`
         )
     }
-
     $('#results').removeClass('hidden');
 }
+
+function displayNytResults(responseJson) {
+    console.log(reponseJson);
+    $('#nyt-results-list').empty();
+
+    for (let i=0; i < responseJson.response.docs.length; i++) {
+        $('#nyt-results-list').append(
+            `<li><<h4>${responseJson.response.docs[i].headline.main}</h4>
+                <h5>${responseJson.response.docs[i].byline}</h5>
+                <p>${responseJson.response.docs[i].abstract}</p>
+                <p>${responseJson.response.docs[i].web_url}</p>
+            </li>`
+        )
+    }
+    $('#results').removeClass('hidden');
+} 
+
+// funciton displayTwitterResults(responseJson) {
+    // $('#twitter-results-list').empty();
+
+    // for (let i=0; i < responseJson.length; i++) {
+    //     $('#twitter-results-list').append(
+    //         `<li><h4>${responseJson[i]}</h4>
+    //             <h4>
+    //         </li>`
+    //     )
+    // }
+
+// }
+
 
 function watchForm() {
     $('form').submit(event => {
