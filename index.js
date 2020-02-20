@@ -24,11 +24,11 @@ function formatListenQueryParams(listenParams) {
     return listenQueryItems.join('&');
 }
 
-// function formatNytQueryParams(nytParams) {
-//     const nytQueryItems = Object.keys(nytParams)
-//     .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(nytParams[key])}`)
-//     return nytQueryItems.join('&');
-// }
+function formatNytQueryParams(nytParams) {
+    const nytQueryItems = Object.keys(nytParams)
+    .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(nytParams[key])}`)
+    return nytQueryItems.join('&');
+}
 
 // function formatTwitterQueryParams(twitterParams) {
 //     const twitterQueryItems = Object.keys(twitterParams)
@@ -38,13 +38,8 @@ function formatListenQueryParams(listenParams) {
 
 function getPodcasts(query) {
     const listenParams = {
-        //api_key: LISTEN.KEY,
         q: query
-    };
-
-    const myHeaders = new Headers({
-            "X-ListenAPI-Key": 'e57ee78b69e946798d7031a2901389f5'
-        });
+    }; 
 
     const listenQueryString = formatListenQueryParams(listenParams);
     const listenURL = LISTEN.BASE_URL + '?' + listenQueryString;
@@ -52,7 +47,11 @@ function getPodcasts(query) {
 
     console.log(listenURL);
 
-    fetch(listenURL, myHeaders)
+    fetch(listenURL, {
+        headers: {
+            "X-ListenAPI-Key": 'e57ee78b69e946798d7031a2901389f5'
+        },
+      })
     .then(response => {
         if (response.ok) {
             return response.json();
@@ -65,11 +64,10 @@ function getPodcasts(query) {
     });
 }
 
-// function getArticles(query, maxResults=10) {
+// function getArticles(query) {
 //     const nytParams = {
-//         api_key: NYT.KEY,
 //         q: query,
-//         maxResults
+//         "api-key": NYT.KEY
 //     }
 
 //     const nytQueryString = formatNytQueryParams(nytParams);
@@ -139,11 +137,11 @@ function displayResults(responseJson) {
     //     )
     // }
 
-    for (let i=0; i < responseJson.length; i++) {
+    for (let i=0; i < responseJson.results.length; i++) {
         $('#listen-results-list').append(
             `<li><<h4>${responseJson.results[i].title_highlighted}</h4>
-                <h4><${responseJson.results[i].image}</h4>
-                <h4><${responseJson.results[i].audio}</h4>
+                <h4>${responseJson.results[i].image}</h4>
+                <audio>${responseJson.results[i].audio}</audio>
             </li>`
         )
     }
