@@ -42,11 +42,9 @@ function getPodcasts(query) {
         q: query
     };
 
-    const myHeaders = {
-        header: new Headers({
+    const myHeaders = new Headers({
             "X-ListenAPI-Key": 'e57ee78b69e946798d7031a2901389f5'
-        })
-    };
+        });
 
     const listenQueryString = formatListenQueryParams(listenParams);
     const listenURL = LISTEN.BASE_URL + '?' + listenQueryString;
