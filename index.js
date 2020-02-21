@@ -12,12 +12,6 @@ const NYT = {
     BASE_URL: 'https://api.nytimes.com/svc/search/v2/articlesearch.json'
 };
 
-// const TWITTER = {
-//     NAME: 'twitter',
-//     KEY: 'FUDLiha2oOHYKBtRzppQ6NaQV',
-//     BASE_URL: 'https://api.twitter.com/1.1/search/tweets.json'
-// };
-
 function formatListenQueryParams(listenParams) {
     const listenQueryItems = Object.keys(listenParams)
     .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(listenParams[key])}`)
@@ -29,12 +23,6 @@ function formatNytQueryParams(nytParams) {
     .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(nytParams[key])}`)
     return nytQueryItems.join('&');
 }
-
-// function formatTwitterQueryParams(twitterParams) {
-//     const twitterQueryItems = Object.keys(twitterParams)
-//     .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(twitterParams[key])}`)
-//     return twitterQueryItems.join('&');
-// }
 
 function getPodcasts(query) {
     const listenParams = {
@@ -89,31 +77,6 @@ function getArticles(query) {
     });
 }
 
-// function getTweets(query, maxResults=20) {
-//     const twitterParams = {
-//         api_key: TWITTER.KEY,
-//         q: query,
-//         count: maxResults
-//     }
-
-//     const twitterQueryString = formatTwitterQueryParams(twitterParams);
-//     const twitterURL = TWITTER.BASE_URL + '?' + twitterQueryString;
-
-//     console.log(twitterURL);
-
-//     fetch(twitterURL)
-//     .then(response => {
-//         if (response.ok) {
-//             return response.json();
-//         }
-//         throw new Error (response.statusText);
-//     })
-//     .then(responseJson => displayResults(responseJson))
-//     .catch(error => {
-//         $('#js-error-message').text(`Something went wrong: ${error.message}`);
-//     });
-// }
-
 function displayListenResults(responseJson) {
     console.log(responseJson);
     $('#listen-results-list').empty();
@@ -141,21 +104,7 @@ function displayNytResults(responseJson) {
         )
     }
     $('#results').removeClass('hidden');
-} 
-
-// funciton displayTwitterResults(responseJson) {
-    // $('#twitter-results-list').empty();
-
-    // for (let i=0; i < responseJson.length; i++) {
-    //     $('#twitter-results-list').append(
-    //         `<li><h4>${responseJson[i]}</h4>
-    //             <h4>
-    //         </li>`
-    //     )
-    // }
-
-// }
-
+}
 
 function watchForm() {
     $('form').submit(event => {
@@ -164,7 +113,6 @@ function watchForm() {
         const maxResults = $('#js-max-results').val();
         getPodcasts(infoInput);
         getArticles(infoInput, maxResults);
-        // getTweets(infoInput, maxResults);
     });
 }
 
