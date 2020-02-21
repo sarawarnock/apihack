@@ -15,8 +15,29 @@
     cursor: pointer;
   }
 
+  #js-form {
+    font-family: 'Playfair Display SC';
+  }
+
+  h1 {
+    font-family: 'Alfa Slab One';
+  }
+
   h2 {
-      padding-top: 20px;
+    padding-top: 20px;
+    font-family: 'Playfair Display SC';
+    font-size: 42px;
+    border: 1px solid black;
+    padding: 10px;
+    width: 400px;
+    text-align: center;
+    margin: auto;
+  }
+
+  h3 {
+    font-family: 'Alfa Slab One';
+    font-size: 32px;
+    text-decoration: underline;
   }
   
   ul {
@@ -28,6 +49,12 @@
   li {
     padding: 10px;
     text-align: center;
+  }
+
+  .podcast {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   .error-message {

@@ -12,11 +12,11 @@ const NYT = {
     BASE_URL: 'https://api.nytimes.com/svc/search/v2/articlesearch.json'
 };
 
-const TWITTER = {
-    NAME: 'twitter',
-    KEY: 'FUDLiha2oOHYKBtRzppQ6NaQV',
-    BASE_URL: 'https://api.twitter.com/1.1/search/tweets.json'
-};
+// const TWITTER = {
+//     NAME: 'twitter',
+//     KEY: 'FUDLiha2oOHYKBtRzppQ6NaQV',
+//     BASE_URL: 'https://api.twitter.com/1.1/search/tweets.json'
+// };
 
 function formatListenQueryParams(listenParams) {
     const listenQueryItems = Object.keys(listenParams)
@@ -120,9 +120,9 @@ function displayListenResults(responseJson) {
 
     for (let i=0; i < responseJson.results.length; i++) {
         $('#listen-results-list').append(
-            `<li><<h4>${responseJson.results[i].title_highlighted}</h4>
-                <h4>${responseJson.results[i].image}</h4>
-                <audio>${responseJson.results[i].audio}</audio>
+            `<li class="podcast"><h4>${responseJson.results[i].title_highlighted}</h4>
+                <img src="${responseJson.results[i].image}" class="pod-img">
+                <audio src="${responseJson.results[i].audio}" controls class="pod-audio"></audio>
             </li>`
         )
     }
@@ -130,15 +130,13 @@ function displayListenResults(responseJson) {
 }
 
 function displayNytResults(responseJson) {
-    console.log(reponseJson);
+    console.log(responseJson);
     $('#nyt-results-list').empty();
 
     for (let i=0; i < responseJson.response.docs.length; i++) {
         $('#nyt-results-list').append(
-            `<li><<h4>${responseJson.response.docs[i].headline.main}</h4>
-                <h5>${responseJson.response.docs[i].byline}</h5>
+            `<li class="newspaper"><h4><a href="${responseJson.response.docs[i].web_url}" target="_blank"> ${responseJson.response.docs[i].headline.main}</a></h4>
                 <p>${responseJson.response.docs[i].abstract}</p>
-                <p>${responseJson.response.docs[i].web_url}</p>
             </li>`
         )
     }
