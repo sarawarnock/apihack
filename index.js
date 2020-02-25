@@ -32,9 +32,6 @@ function getPodcasts(query) {
     const listenQueryString = formatListenQueryParams(listenParams);
     const listenURL = LISTEN.BASE_URL + '?' + listenQueryString;
 
-
-    console.log(listenURL);
-
     fetch(listenURL, {
         headers: {
             "X-ListenAPI-Key": 'e57ee78b69e946798d7031a2901389f5'
@@ -62,8 +59,6 @@ function getArticles(query) {
     const nytQueryString = formatNytQueryParams(nytParams);
     const nytURL = NYT.BASE_URL + '?' + nytQueryString;
 
-    console.log(nytURL);
-
     fetch(nytURL)
     .then(response => {
         if (response.ok) {
@@ -78,7 +73,7 @@ function getArticles(query) {
 }
 
 function displayListenResults(responseJson) {
-    console.log(responseJson);
+    
     $('#listen-results-list').empty();
 
     for (let i=0; i < responseJson.results.length; i++) {
@@ -93,7 +88,7 @@ function displayListenResults(responseJson) {
 }
 
 function displayNytResults(responseJson) {
-    console.log(responseJson);
+   
     $('#nyt-results-list').empty();
 
     for (let i=0; i < responseJson.response.docs.length; i++) {
