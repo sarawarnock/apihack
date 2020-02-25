@@ -3,7 +3,6 @@
   }
   
   body {
-    font-family: 'Roboto', sans-serif;
     text-align: center;
   }
   
@@ -16,16 +15,27 @@
   }
 
   #js-form {
-    font-family: 'Playfair Display SC';
+    font-family: 'DM Serif Text';
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+
+  header {
+    background-color: #19688F;
+    color: white;
+    padding: 20px;
+    width: 100%;
   }
 
   h1 {
-    font-family: 'Alfa Slab One';
+    font-family: 'DM Serif Text';
+    font-size: 32px;
   }
 
   h2 {
-    padding-top: 20px;
-    font-family: 'Playfair Display SC';
+    padding-top: 40px;
+    font-family: 'DM Serif Text';
     font-size: 42px;
     border: 1px solid black;
     padding: 10px;
@@ -35,9 +45,15 @@
   }
 
   h3 {
-    font-family: 'Alfa Slab One';
+    font-family: 'DM Serif Text';
     font-size: 32px;
-    text-decoration: underline;
+    border: 1px solid black;
+    background-color: #19688F;
+    color: white;
+  }
+
+  .results {
+    display: inline-block;
   }
   
   ul {
@@ -52,12 +68,12 @@
   }
 
   p {
-    font-family: 'Playfair Display';
+    font-family: 'Pontano Sans';
     font-size: 20px;
   }
 
   h4 {
-    font-family: 'Playfair Display SC';
+    font-family: 'Pontano Sans';
     font-size: 24px;
     font-weight: bold;
   }
@@ -76,9 +92,24 @@
     display: none;
   }
 
+  .result-header {
+    font-size: 28px;
+    display: flex;
+  }
+
+  #nyt-search {
+    width: 50%;
+    text-align: center;
+  }
+
+  #listen-search {
+    width: 50%;
+    text-align: center;
+  }
+
 @media screen and (min-width: 600px) {
 
-  .results-list {
+  /* .results-list {
     float: left;
     width: 50%;
     padding: 10px;
@@ -88,6 +119,27 @@
     content: "";
     display: table;
     clear: both;
+  } */
+
+  #results {
+    display: flex;
+    flex-direction: row;
   }
 
+  .results-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+  }
+
+  #nyt-results-list {
+    width: 50%;
+    justify-content: flex-start
+  }
+
+  #listen-results-list {
+    width: 49%;
+    justify-content: flex-end;
+  }
 }

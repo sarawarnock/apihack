@@ -27,7 +27,7 @@ function formatNytQueryParams(nytParams) {
 function getPodcasts(query) {
     const listenParams = {
         q: query
-    }; 
+    }
 
     const listenQueryString = formatListenQueryParams(listenParams);
     const listenURL = LISTEN.BASE_URL + '?' + listenQueryString;
@@ -104,6 +104,9 @@ function displayNytResults(responseJson) {
         )
     }
     $('#results').removeClass('hidden');
+    $('#search-results').removeClass('hidden');
+    $('#listen-search').removeClass('hidden');
+    $('#nyt-search').removeClass('hidden');
 }
 
 function watchForm() {
