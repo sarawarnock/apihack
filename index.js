@@ -26,7 +26,9 @@ function formatNytQueryParams(nytParams) {
 
 function getPodcasts(query) {
     const listenParams = {
-        q: query
+        q: query,
+        type: 'episode',
+        language: 'English'
     }
 
     const listenQueryString = formatListenQueryParams(listenParams);
@@ -45,7 +47,6 @@ function getPodcasts(query) {
     })
     .then(responseJson => displayListenResults(responseJson))
     .catch(error => {
-        console.log(error);
         $('#js-error-message').text(`Something went wrong: ${error}`);
     });
 }

@@ -72,10 +72,23 @@
     font-size: 20px;
   }
 
+  a {
+    color: black;
+  }
+
   h4 {
     font-family: 'Pontano Sans';
     font-size: 24px;
     font-weight: bold;
+    color: black;
+  }
+
+  .pod-image {
+    padding: 20px;
+  }
+
+  .pod-audio {
+    padding: 10px;
   }
 
   .podcast {
@@ -127,12 +140,13 @@
   }
 
   #nyt-search {
-    width: 50%;
+    width: 45%;
     text-align: center;
+    margin-right: 20px;
   }
 
   #listen-search {
-    width: 50%;
+    width: 45%;
     text-align: center;
   }
 }
