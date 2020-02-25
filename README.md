@@ -7,4 +7,6 @@ This app is designed for the curious user. Upon entering a search term, the user
 ![Start Page](Startpage.png)
 ![Search Results](SearchResults.png)
 
-Technologies used: HTML/CSS/JavaScript/jQuery
+<br>
+
+**Technologies used: HTML/CSS/JavaScript/jQuery**
