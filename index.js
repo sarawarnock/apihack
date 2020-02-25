@@ -54,7 +54,9 @@ function getPodcasts(query) {
 function getArticles(query) {
     const nytParams = {
         q: query,
-        "api-key": NYT.KEY
+        "api-key": NYT.KEY,
+        sort: "newest",
+        page: 10
     }
 
     const nytQueryString = formatNytQueryParams(nytParams);
@@ -86,6 +88,9 @@ function displayListenResults(responseJson) {
         )
     }
     $('#results').removeClass('hidden');
+    $('#search-results').removeClass('hidden');
+    $('#listen-search').removeClass('hidden');
+    $('#nyt-search').removeClass('hidden');
 }
 
 function displayNytResults(responseJson) {
@@ -99,6 +104,7 @@ function displayNytResults(responseJson) {
             </li>`
         )
     }
+
     $('#results').removeClass('hidden');
     $('#search-results').removeClass('hidden');
     $('#listen-search').removeClass('hidden');
