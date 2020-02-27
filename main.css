@@ -52,8 +52,9 @@
     color: white;
   }
 
-  .results {
+  #results {
     display: inline-block;
+    width: 100%;
   }
   
   ul {
