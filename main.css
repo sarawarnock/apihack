@@ -151,3 +151,9 @@
     text-align: center;
   }
 }
+
+@media screen and (max-width: 320px) {
+  h2 {
+    width: 275;
+  }
+}
